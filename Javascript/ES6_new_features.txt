@@ -1,0 +1,22 @@
+array function:
+// TODO
+Similar to stream in Java
+
+class:
+// TODO
+
+
+template:
+// TODO
+
+
+literals:
+// TODO
+
+
+let:
+// TODO
+
+
+const:
+// TODO
