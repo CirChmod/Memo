@@ -1,1 +1,9 @@
 Spring bean
+
+IOC container overview
+1. Definition: The container contains all beans and manages them with their lifecycle callback, scope and so on.
+2. How to use:
+  a) Instantate container with bean configuration
+    ex: there are many ways. One of the most simple way is instantate it by 'new' key word
+    ApplicationContext context = new ClassPathXmlApplicationContext("services.xml", "daos.xml");
+  b)
