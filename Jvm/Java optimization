@@ -1,0 +1,26 @@
+Defination of memory optimization
+
+1. From JVM view port
+在不改变代码的情况下对jvm内存(主要是heap内存)进行优化，减少占用。主要手段是基于jvm的参数进行调优
+主要的目标是，了解jvm虚拟机的运行机制，内存构成，线程并发的效率。
+
+tips：
+
+稳态的JVM
+https://plumbr.io/wp-content/uploads/2016/02/java-memory-usage-example.png
+在这种状态下面，JVM的heap区内存占用如上图所示
+1）缓慢上升是由于在JVM运行过程中会不断的分配内存给新的对象，导致内存占比上升
+2）突然下降是因为触发了GC，将不再被引用的对象（Dead Object）进行回收，将内存释放
+3）缓慢上升过程中出现锯齿状是因为在jvm分配对象的时候，有一部分对象是short life的，它们被分配在young generation的heap区，这个区域很快被回收，这时触发的GC叫做Minor GC
+
+Young Genaration Heap
+JVM进行内存分配会首先分配到这个区域（准确的说是在这个区域的Edge区），在这个区域触发的GC叫做Minor GC
+Some points
+1）在JVM无法分配内存的时候（比如Edge区满的时候），Minor GC总是会触发
+2）在进行Minor GC的时候，不会去扫描Old Generation的对象，并且在新生代对老生代的引用不会在垃圾回收是被标记
+3）一般来说Minor GC产生的暂停是很短的，但是如果新生代中分配的对象都不是short life的，那它们就可能会被复制到老生代中（“生存”了一定次数之后）
+
+
+
+2. From project view port
+另一种优化方式是通过，对代码进行优化。比如改用内存占用更少的数据结构，或者从架构层面上进行优化
