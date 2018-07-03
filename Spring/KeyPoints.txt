@@ -1,0 +1,15 @@
+1. 依赖注入主要有两种方式，一种是通过构造器参数注入，一种是通过setter方法注入。
+	构造器注入方式(静态工厂注入也是这种方式)
+	a). 通过<contrutor-arg>标签来配置
+	b). 属性ref代表对bean的引用
+	c). 属性type代表参数的类型(只能用于简单类型)
+	d). 属性value代表参数默认值(只能用于简单类型)
+	e). 属性index代表参数位置
+	f). 属性name代表参数名(默认是参数名，可以通过@ContructorProperties配置)
+
+	setter注入方式
+	a). 通过<property>标签来配置
+	b). 属性name代表参数名
+	c). 属性value代表参数默认值
+
+2. 依赖注入的过程，首先创建容器(container)，在创建容器的时候会校验配置(configuration)的正确性，这时候还没有注入。之后会创建bean，如果bean的作用域(scope)是单例(singleton)的，那么在container创建的时候就会创建这个bean，否则bean就只会在它被用到的时候创建，创建bean的时候会同时注入它们的依赖，就像一个树图一样。注意一点，在创建一个bean的时候，如果这个bean依赖另一个bean，那么会先创建其依赖，然后再将依赖注入，类似栈一样。
